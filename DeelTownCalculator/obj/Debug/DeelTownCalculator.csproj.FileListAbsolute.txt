@@ -1,0 +1,7 @@
+C:\Dropbox\Desktop.Power\DeelTownCalculator\DeelTownCalculator\obj\Debug\DeelTownCalculator.csproj.CoreCompileInputs.cache
+C:\Dropbox\Desktop.Power\DeelTownCalculator\DeelTownCalculator\bin\Debug\DeelTownCalculator.exe.config
+C:\Dropbox\Desktop.Power\DeelTownCalculator\DeelTownCalculator\bin\Debug\DeelTownCalculator.exe
+C:\Dropbox\Desktop.Power\DeelTownCalculator\DeelTownCalculator\bin\Debug\DeelTownCalculator.pdb
+C:\Dropbox\Desktop.Power\DeelTownCalculator\DeelTownCalculator\obj\Debug\DeelTownCalculator.exe
+C:\Dropbox\Desktop.Power\DeelTownCalculator\DeelTownCalculator\obj\Debug\DeelTownCalculator.pdb
+C:\Dropbox\Desktop.Power\DeelTownCalculator\DeelTownCalculator\obj\Debug\DeelTownCalculator.csprojResolveAssemblyReference.cache
