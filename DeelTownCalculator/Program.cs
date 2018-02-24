@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DeelTownCalculator.Crafter;
 
 namespace DeelTownCalculator
 {
@@ -10,27 +11,22 @@ namespace DeelTownCalculator
             // Todo list of current state and this program show you, what you max effort could be
 
             Console.WriteLine("Running");
-            var items = new List<Material>();
-
-            items.Add(CrafterGreenHouse.Tree()[0]);
-            items.Add(CrafterGreenHouse.Grape()[0]);
-            items.Add(CrafterGreenHouse.Liana()[0]);
-
-            items.Add(CrafterJewel.PolishedAmber()[0]);
-            items.Add(CrafterJewel.PolishedEmerald()[0]);
-
-            items.Add(CrafterJewel.EmeraldRing()[0]);
-            items.Add(CrafterJewel.AmberBracelet()[0]);
-
-
-            items.Add(CrafterSmelting.CopperBar()[0]);
-            items.Add(CrafterSmelting.IronBar()[0]);
-            items.Add(CrafterSmelting.Glass()[0]);
-            items.Add(CrafterSmelting.AluminiumBar()[0]);
-
-            items.Add(CrafterSmelting.SilverBar()[0]);
-            items.Add(CrafterSmelting.GoldBar()[0]);
-
+            var items = new List<Material>
+            {
+                CrafterGreenHouse.Tree()[0],
+                CrafterGreenHouse.Grape()[0],
+                CrafterGreenHouse.Liana()[0],
+                CrafterJewel.PolishedAmber()[0],
+                CrafterJewel.PolishedEmerald()[0],
+                CrafterJewel.EmeraldRing()[0],
+                CrafterJewel.AmberBracelet()[0],
+                CrafterSmelting.CopperBar()[0],
+                CrafterSmelting.IronBar()[0],
+                CrafterSmelting.Glass()[0],
+                CrafterSmelting.AluminiumBar()[0],
+                CrafterSmelting.SilverBar()[0],
+                CrafterSmelting.GoldBar()[0]
+            };
 
             foreach (var material in items) Console.WriteLine(material.Print());
             Console.ReadKey();

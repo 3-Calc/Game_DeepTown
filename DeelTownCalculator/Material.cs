@@ -4,6 +4,10 @@ using System.Text;
 
 namespace DeelTownCalculator
 {
+    
+   
+
+
     /// <summary>
     ///     all time are in seconds
     /// </summary>
@@ -12,32 +16,32 @@ namespace DeelTownCalculator
         public double PieceAmount = 1;
 
 
-        public Material(ItemType type, double craftingTime)
+        public Material(MaterialType type, double craftingTime)
         {
             RequiredItemOld = new List<Material>();
-            ItemType = type;
+            MaterialType = type;
             CraftingTime = craftingTime;
         }
 
         public double CraftingTime { get; }
 
-        private ItemType ItemType { get; }
+        private MaterialType MaterialType { get; }
         public List<Material> RequiredItemOld { get; set; }
 
         /// <summary>
-        /// Key: ItemType - Int: item amount
+        ///     Key: MaterialType - Int: item amount
         /// </summary>
-        public Dictionary<ItemType, int> RequiredItem { get; set; }
+        public Dictionary<MaterialType, int> RequiredItem { get; set; }
 
 
         public int CompareTo(object obj)
         {
-            return obj == null ? ItemType.CompareTo(null) : ItemType.CompareTo(((Material) obj).ItemType);
+            return obj == null ? MaterialType.CompareTo(null) : MaterialType.CompareTo(((Material)obj).MaterialType);
         }
 
         public double GetSellingPrice()
         {
-            return ItemDefines.SellingPrices[ItemType] / PieceAmount;
+            return Market.SellingPrices[MaterialType] / PieceAmount;
         }
 
         public double GetCraftingTime()
@@ -63,12 +67,12 @@ namespace DeelTownCalculator
             var preSellCost = GetPreSellCost();
             var sellingPrice = GetSellingPrice();
 
-            sb.AppendLine(ItemType.ToString());
+            sb.AppendLine(MaterialType.ToString());
             sb.AppendLine("Price: " + sellingPrice);
             sb.AppendLine("Mix Max crafting time in second: " + GetTotalCraftingTime());
 
             sb.AppendLine("Simple PreSellCost: " + preSellCost);
-            
+
             if (preSellCost > sellingPrice)
             {
                 sb.AppendLine("BAD CRAFTING ITEM");

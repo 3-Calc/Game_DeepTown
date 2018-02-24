@@ -1,0 +1,127 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DeelTownCalculator
+{
+    public enum CrafterType
+    {
+        OreMines,
+        OilPipe,
+        WaterCollector,
+        SeedMarket,
+        JewelCrafter,
+        SmeltingCrafter,
+        ChemistryCrafter,
+        Crafter
+    }
+    public enum MaterialType
+    {
+        Coal,
+        Graphite,
+
+        Copper,
+        CopperBar,
+        Iron,
+        IronBar,
+        SteelBar,
+        Aluminium,
+        AluminiumBar,
+        Silver,
+        SilverBar,
+        Gold,
+        GoldBar,
+        Titanium,
+        TitaniumBar,
+        Platinum,
+
+        SteelPlate,
+        DiamondCutter,
+        Motherboard,
+        CopperNail,
+        OpticFiber,
+        AmberInsulation,
+        DryIce,
+        SolarPanel,
+        GreenLaser,
+        Wire,
+        InsulatedWire,
+        AmaberCharger,
+        ElecticalEngine,
+        AluminumBottle,
+        Bomb,
+        Gear,
+        Battery,
+        Lamp,
+        Magnet,
+        MagnetBar,
+        Compressor,
+        Accumulator,
+        SolidPropellant,
+        Circuits,
+
+        Uranium,
+        TitaniumOre,
+        Amber,
+        AmberCharger,
+        PolishedAmber,
+        Emerald,
+        PolishedEmerald,
+        Topaz,
+        PolishedTopaz,
+        Ruby,
+        PolishedRuby,
+        Sapphire,
+        PolishedSappire,
+        Amethyst,
+        PolishedAmethyst,
+        Diamond,
+        PolishedDiamond,
+        Alexandrite,
+        PolishedAlexandrite,
+        Obsidian,
+        PolishedObsidian,
+
+        EmeraldRing,
+        AmberBracelet,
+        MayaCalendar,
+        Haircomb,
+        ObsidianKnife,
+
+        TreeSeed,
+        Tree,
+        LianaSeed,
+        Liana,
+        Rubber,
+        GrapeSeed,
+        Grape,
+        Ethanol,
+
+        Water,
+        Oil,
+        RefinedOil,
+        Sulfur,
+        Sodium,
+        Nitrogen,
+        Helium3,
+        Silicon,
+        Glass,
+        LabFlask,
+        CleanWater,
+        Hydrogen,
+        Oxygen,
+        GunPowder,
+        SulfuricAcid,
+        PlasticPlate,
+        MagnetiteOre,
+        DiethylEther,
+        UraniumRod,
+        PlasicPlate,
+        TonixBomb,
+        EnhancedHelium3,
+
+        LiquidNitrogen
+    }
+}

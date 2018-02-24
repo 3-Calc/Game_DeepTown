@@ -5,3 +5,10 @@ C:\Dropbox\Desktop.Power\DeelTownCalculator\DeelTownCalculator\bin\Debug\DeelTow
 C:\Dropbox\Desktop.Power\DeelTownCalculator\DeelTownCalculator\obj\Debug\DeelTownCalculator.exe
 C:\Dropbox\Desktop.Power\DeelTownCalculator\DeelTownCalculator\obj\Debug\DeelTownCalculator.pdb
 C:\Dropbox\Desktop.Power\DeelTownCalculator\DeelTownCalculator\obj\Debug\DeelTownCalculator.csprojResolveAssemblyReference.cache
+D:\Coding\Github\Game_DeepTown\DeelTownCalculator\bin\Debug\DeelTownCalculator.exe.config
+D:\Coding\Github\Game_DeepTown\DeelTownCalculator\bin\Debug\DeelTownCalculator.exe
+D:\Coding\Github\Game_DeepTown\DeelTownCalculator\bin\Debug\DeelTownCalculator.pdb
+D:\Coding\Github\Game_DeepTown\DeelTownCalculator\obj\Debug\DeelTownCalculator.csproj.CoreCompileInputs.cache
+D:\Coding\Github\Game_DeepTown\DeelTownCalculator\obj\Debug\DeelTownCalculator.exe
+D:\Coding\Github\Game_DeepTown\DeelTownCalculator\obj\Debug\DeelTownCalculator.pdb
+D:\Coding\Github\Game_DeepTown\DeelTownCalculator\obj\Debug\DeelTownCalculator.csprojResolveAssemblyReference.cache

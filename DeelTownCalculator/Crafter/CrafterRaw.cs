@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
 
-namespace DeelTownCalculator
+namespace DeelTownCalculator.Crafter
 {
     public class CrafterRaw
     {
-
         /// <summary>
-        /// direct from mines or buying or collection
+        ///     direct from mines or buying or collection
         /// </summary>
         /// <param name="type"></param>
         /// <param name="amout"></param>
         /// <returns></returns>
-        public static List<Material> CreateRawResource(ItemType type, int amout = 1)
+        public static List<Material> CreateRawResource(MaterialType type, int amout = 1)
         {
             // Define item
             var item = new Material(type, 0);
@@ -20,26 +19,26 @@ namespace DeelTownCalculator
 
 
         /// <summary>
-        /// Simple Single Crafting Item 
+        ///     Simple Single Crafting Item
         /// </summary>
-        /// <param name="inputItem"></param>
+        /// <param name="inputMaterial"></param>
         /// <param name="intputAmmount"></param>
         /// <param name="inputTime"></param>
         /// <param name="outputType"></param>
         /// <param name="outputAmount"></param>
         /// <returns></returns>
-        public static List<Material> BaseResource(ItemType inputItem, int intputAmmount, int inputTime,
-            ItemType outputType, int outputAmount)
+        public static List<Material> BaseResource(MaterialType inputMaterial, int intputAmmount, int inputTime,
+            MaterialType outputType, int outputAmount)
         {
             // Define item
             var item = new Material(outputType, inputTime);
             // add required Items
-            item.RequiredItemOld.AddRange(CreateRawResource(inputItem, intputAmmount));
+            item.RequiredItemOld.AddRange(CreateRawResource(inputMaterial, intputAmmount));
             return CheckSingleItemRequest(outputType, item, outputAmount);
         }
 
         /// <summary>
-        /// Komplex Item
+        ///     Komplex Item
         /// </summary>
         /// <param name="type"></param>
         /// <param name="craftingTime"></param>
@@ -48,7 +47,7 @@ namespace DeelTownCalculator
         /// <param name="requiredItem2"></param>
         /// <param name="requiredItem3"></param>
         /// <returns></returns>
-        public static List<Material> Resource(ItemType type, int craftingTime, int amount, List<Material> requiredItem1,
+        public static List<Material> Resource(MaterialType type, int craftingTime, int amount, List<Material> requiredItem1,
             List<Material> requiredItem2 = null, List<Material> requiredItem3 = null)
         {
             // Define item
@@ -67,19 +66,15 @@ namespace DeelTownCalculator
         }
 
         /// <summary>
-        /// Checking the wishes output, depends on packet amount per one crafting process
+        ///     Checking the wishes output, depends on packet amount per one crafting process
         /// </summary>
         /// <param name="type"></param>
         /// <param name="item"></param>
         /// <param name="amount"></param>
         /// <returns></returns>
-        public static List<Material> CheckSingleItemRequest(ItemType type, Material item, int amount = 1)
+        public static List<Material> CheckSingleItemRequest(MaterialType type, Material item, int amount = 1)
         {
-            var craftingAmout = CrafterDefines.CraftingOutputCounter.ContainsKey(type)
-                ? CrafterDefines.CraftingOutputCounter[type]
-                : 1;
-
-
+            var craftingAmout = Processor.MultiOutputList.ContainsKey(type) ? Processor.MultiOutputList[type] : 1;
             // Packet is more than 1 out
             if (craftingAmout != 1)
                 item.ReduceCost(craftingAmout);
