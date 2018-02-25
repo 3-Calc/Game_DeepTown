@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DeelTownCalculator
+﻿namespace DeelTownCalculator.Defines
 {
     public enum CrafterType
     {
@@ -12,11 +6,13 @@ namespace DeelTownCalculator
         OilPipe,
         WaterCollector,
         SeedMarket,
+        GreenHouseCrafter,
         JewelCrafter,
         SmeltingCrafter,
         ChemistryCrafter,
-        Crafter
+        CraftingCrafter
     }
+
     public enum MaterialType
     {
         Coal,
@@ -48,7 +44,6 @@ namespace DeelTownCalculator
         GreenLaser,
         Wire,
         InsulatedWire,
-        AmaberCharger,
         ElecticalEngine,
         AluminumBottle,
         Bomb,
@@ -74,7 +69,7 @@ namespace DeelTownCalculator
         Ruby,
         PolishedRuby,
         Sapphire,
-        PolishedSappire,
+        PolishedSapphire,
         Amethyst,
         PolishedAmethyst,
         Diamond,
@@ -118,7 +113,6 @@ namespace DeelTownCalculator
         MagnetiteOre,
         DiethylEther,
         UraniumRod,
-        PlasicPlate,
         TonixBomb,
         EnhancedHelium3,
 

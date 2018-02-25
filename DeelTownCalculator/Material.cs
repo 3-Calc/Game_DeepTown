@@ -1,77 +1,87 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
+using DeelTownCalculator.Defines;
+using DeelTownCalculator.Model;
 
 namespace DeelTownCalculator
 {
-    
-   
-
-
+    /// <inheritdoc />
     /// <summary>
-    ///     all time are in seconds
+    ///    Material object for exact 1 Item
     /// </summary>
     public class Material : IComparable
     {
-        public double PieceAmount = 1;
+        //public int CurrentItemCapacity = 1;
+        public double OneUnitFactor = 1;
+        private static string Tabs = "";
 
-
-        public Material(MaterialType type, double craftingTime)
+        public Material(MaterialType type)
         {
-            RequiredItemOld = new List<Material>();
             MaterialType = type;
-            CraftingTime = craftingTime;
+            DecreaseCapacityToSingleItem(Converter.GetOutputAmount(type));
         }
 
-        public double CraftingTime { get; }
 
         private MaterialType MaterialType { get; }
-        public List<Material> RequiredItemOld { get; set; }
-
-        /// <summary>
-        ///     Key: MaterialType - Int: item amount
-        /// </summary>
-        public Dictionary<MaterialType, int> RequiredItem { get; set; }
-
 
         public int CompareTo(object obj)
         {
             return obj == null ? MaterialType.CompareTo(null) : MaterialType.CompareTo(((Material)obj).MaterialType);
         }
 
-        public double GetSellingPrice()
+        private double GetSellingPrice()
         {
-            return Market.SellingPrices[MaterialType] / PieceAmount;
+            return SellingPrice.From[MaterialType] / OneUnitFactor;
         }
 
-        public double GetCraftingTime()
+        public double GetSellingPricePerUnit()
         {
-            return CraftingTime / PieceAmount;
+            return GetSellingPrice() / Converter.GetOutputAmount(MaterialType);
+        }
+
+        public CraftingTime GetRawCraftingTimePerUnit(double amount = 1)
+        {
+            var result = new CraftingTime();
+            result.AddTime(MaterialType, Converter.GetCraftingTime(MaterialType) * OneUnitFactor * amount);
+            return result;
         }
 
         /// <summary>
         ///     TODO to define different timer
         /// </summary>
         /// <returns></returns>
-        public double GetTotalCraftingTime()
+        public CraftingTime GetTotalCraftingTime(double amount = 1)
         {
-            var sum = GetCraftingTime();
-            foreach (var item in RequiredItemOld) sum += item.GetTotalCraftingTime();
+            Tabs += "   ";
+            var time = new CraftingTime();
+            time.AddTime(GetRawCraftingTimePerUnit(amount));
 
-            return sum;
+            // total time for one output unit
+            foreach (var item in Converter.GetRequiredItemPerCrafting(MaterialType))
+            {
+                SimpleDebugger.PrintLine(Tabs + "Create Material: " + item.Value + " of " + item.Key);
+                var material = new Material(item.Key);
+                // reduce time for one output unit and add total time
+                time.AddTime(material.GetTotalCraftingTime(item.Value * OneUnitFactor));
+         
+
+            }
+            Tabs = Tabs.Remove(0, 3);
+            return time;
+
         }
 
         public string Print()
         {
             var sb = new StringBuilder();
             var preSellCost = GetPreSellCost();
-            var sellingPrice = GetSellingPrice();
+            var sellingPrice = GetSellingPricePerUnit();
 
-            sb.AppendLine(MaterialType.ToString());
-            sb.AppendLine("Price: " + sellingPrice);
-            sb.AppendLine("Mix Max crafting time in second: " + GetTotalCraftingTime());
-
-            sb.AppendLine("Simple PreSellCost: " + preSellCost);
+            sb.AppendLine("Item: " + MaterialType.ToString());
+            //sb.AppendLine("Simple PreSellCost: " + preSellCost);
+            //sb.AppendLine("Price: " + sellingPrice);
+            //sb.AppendLine(GetTotalCraftingTime().Print());
 
             if (preSellCost > sellingPrice)
             {
@@ -79,8 +89,9 @@ namespace DeelTownCalculator
             }
             else
             {
-                sb.AppendLine("Simple crafting time in second " + CraftingTime);
-                sb.AppendLine("Max simple profit per hour: " + (sellingPrice - preSellCost) / CraftingTime * 3600);
+                //sb.AppendLine("Simple crafting time in second: " + GetRawCraftingTimePerUnit().Max());
+                //sb.AppendLine("Simple max amount per hour: " + (3600 / GetRawCraftingTimePerUnit().Max()));
+                sb.AppendLine("Simple profit per hour: " + (sellingPrice - preSellCost) / GetRawCraftingTimePerUnit().Max() * 3600);
             }
 
             return sb.ToString();
@@ -89,24 +100,21 @@ namespace DeelTownCalculator
         private double GetPreSellCost()
         {
             var sum = 0.0;
-            foreach (var item in RequiredItemOld) sum += item.GetSellingPrice();
+            foreach (var item in Converter.GetRequiredItemPerCrafting(MaterialType))
+                sum += new Material(item.Key).GetSellingPricePerUnit() * item.Value;
 
-            return sum;
+            return sum * OneUnitFactor;
         }
 
-        public List<Material> Clones(int total)
+        //public void IncreaseCapacity(int itemAmount)
+        //{
+        //    OneUnitFactor = OneUnitFactor / CurrentItemCapacity * itemAmount;
+        //    CurrentItemCapacity = itemAmount;
+        //}
+
+        public void DecreaseCapacityToSingleItem(double outputAmount)
         {
-            var result = new List<Material>();
-
-            for (var i = 0; i < total; i++) result.Add(this);
-
-            return result;
-        }
-
-        public void ReduceCost(double craftingAmout)
-        {
-            PieceAmount = 1.0 / craftingAmout;
-            foreach (var item in RequiredItemOld) item.PieceAmount = PieceAmount;
+            OneUnitFactor = 1.0 / outputAmount;
         }
     }
 }

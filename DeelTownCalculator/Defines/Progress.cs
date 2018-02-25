@@ -1,29 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
 
-namespace DeelTownCalculator
+namespace DeelTownCalculator.Defines
 {
-    public class Processor
+    public class Progress
     {
-        public static readonly Dictionary<MaterialType, int> MultiOutputList = new Dictionary<MaterialType, int>
-        {
-            {MaterialType.Coal, 50},
-            {MaterialType.Titanium, 50},
-            {MaterialType.GunPowder, 20},
-            {MaterialType.OpticFiber, 10},
-            {MaterialType.CopperNail, 10},
-            {MaterialType.Tree, 10},
-            {MaterialType.TonixBomb, 10},
-            {MaterialType.GreenLaser, 5},
-            {MaterialType.Wire, 5},
-            {MaterialType.LiquidNitrogen, 4},
-            {MaterialType.Grape, 2},
-            {MaterialType.Oxygen, 2},
-            {MaterialType.Hydrogen, 2},
-            {MaterialType.Rubber, 2}
-        };
-
         public static readonly Dictionary<MaterialType, int> SeedMarket = new Dictionary<MaterialType, int>
         {
             {MaterialType.GrapeSeed, 0},
@@ -41,7 +22,7 @@ namespace DeelTownCalculator
             {MaterialType.Oil, 0}
         };
 
-        public static readonly Dictionary<MaterialType, int> TreeHouse = new Dictionary<MaterialType, int>
+        public static readonly Dictionary<MaterialType, int> GreenHouseCrafter = new Dictionary<MaterialType, int>
         {
             {MaterialType.Tree, 30 * 60},
             {MaterialType.Liana, 30 * 60},
@@ -58,7 +39,7 @@ namespace DeelTownCalculator
             {MaterialType.ObsidianKnife, 2 * 60},
             {MaterialType.PolishedEmerald, 30},
             {MaterialType.PolishedTopaz, 60},
-            {MaterialType.PolishedSappire, 60},
+            {MaterialType.PolishedSapphire, 60},
             {MaterialType.PolishedAmethyst, 60},
             {MaterialType.PolishedAlexandrite, 60},
             {MaterialType.PolishedObsidian, 60}
@@ -73,7 +54,7 @@ namespace DeelTownCalculator
             {MaterialType.SulfuricAcid, 30 * 60},
             {MaterialType.Ethanol, 30 * 60},
             {MaterialType.RefinedOil, 30 * 60},
-            {MaterialType.PlasicPlate, 10 * 60},
+            {MaterialType.PlasticPlate, 10 * 60},
             {MaterialType.Titanium, 20},
             {MaterialType.DiethylEther, 60},
             {MaterialType.GunPowder, 2 * 60},
@@ -126,26 +107,21 @@ namespace DeelTownCalculator
         };
 
         private static Dictionary<MaterialType, int> CrafterInstance;
-        private static Dictionary<MaterialType, int> AllCrafter;
+        private static Dictionary<MaterialType, int> AllCrafterInstance;
 
-        public static void ImportData(Dictionary<MaterialType, int> target, Dictionary<MaterialType, int> importSource)
+        public static Dictionary<MaterialType, int> AllCrafter
         {
-            try
+            get
             {
-                foreach (var i in importSource)
-                {
-                    target.Add(i.Key, i.Value);
-                }
+                if (AllCrafterInstance != null)
+                    return AllCrafterInstance;
+                // dummy function call 
+                var dummyFunctionCall = OreMines;
+                return AllCrafter;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-
         }
 
-        public static Dictionary<MaterialType, int> Crafter
+        public static Dictionary<MaterialType, int> OreMines
         {
             get
             {
@@ -153,32 +129,39 @@ namespace DeelTownCalculator
 
                 CrafterInstance = new Dictionary<MaterialType, int>();
 
-                AllCrafter = new Dictionary<MaterialType, int>();
+                AllCrafterInstance = new Dictionary<MaterialType, int>();
 
-                ImportData(AllCrafter, WaterCollector);
-                ImportData(AllCrafter, SeedMarket);
-                ImportData(AllCrafter, OilPipe);
-                ImportData(AllCrafter, JewelCrafter);
-                ImportData(AllCrafter, ChemistryCrafter);
-                ImportData(AllCrafter, SmeltingCrafter);
-                ImportData(AllCrafter, Crafting);
+                ImportData(AllCrafterInstance, WaterCollector);
+                ImportData(AllCrafterInstance, SeedMarket);
+                ImportData(AllCrafterInstance, GreenHouseCrafter);
+                ImportData(AllCrafterInstance, OilPipe);
+                ImportData(AllCrafterInstance, JewelCrafter);
+                ImportData(AllCrafterInstance, ChemistryCrafter);
+                ImportData(AllCrafterInstance, SmeltingCrafter);
+                ImportData(AllCrafterInstance, Crafting);
 
-
+                
                 foreach (MaterialType type in Enum.GetValues(typeof(MaterialType)))
-                {
-                    if (!AllCrafter.ContainsKey(type))
+                    if (!AllCrafterInstance.ContainsKey(type))
                         CrafterInstance.Add(type, 0);
-                }
-                ImportData(AllCrafter, CrafterInstance);
+                ImportData(AllCrafterInstance, CrafterInstance);
 
                 return CrafterInstance;
             }
         }
 
-        public static int GetCraftingType(MaterialType type)
+        public static void ImportData(Dictionary<MaterialType, int> target, Dictionary<MaterialType, int> importSource)
         {
-            return AllCrafter[type];
+            try
+            {
+                foreach (var i in importSource)
+                    target.Add(i.Key, i.Value);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
-
     }
 }

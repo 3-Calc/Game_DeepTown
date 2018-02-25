@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DeelTownCalculator.Crafter;
+using DeelTownCalculator.Defines;
 
 namespace DeelTownCalculator
 {
@@ -9,24 +9,31 @@ namespace DeelTownCalculator
         private static void Main()
         {
             // Todo list of current state and this program show you, what you max effort could be
-
+            // todo special handling for oxygen and hydrogen // check helium 3 material
             Console.WriteLine("Running");
             var items = new List<Material>
             {
-                CrafterGreenHouse.Tree()[0],
-                CrafterGreenHouse.Grape()[0],
-                CrafterGreenHouse.Liana()[0],
-                CrafterJewel.PolishedAmber()[0],
-                CrafterJewel.PolishedEmerald()[0],
-                CrafterJewel.EmeraldRing()[0],
-                CrafterJewel.AmberBracelet()[0],
-                CrafterSmelting.CopperBar()[0],
-                CrafterSmelting.IronBar()[0],
-                CrafterSmelting.Glass()[0],
-                CrafterSmelting.AluminiumBar()[0],
-                CrafterSmelting.SilverBar()[0],
-                CrafterSmelting.GoldBar()[0]
+                //new Material(MaterialType.Tree),
+                // new Material(MaterialType.ElecticalEngine),
+                //new Material(MaterialType.Grape),
+                //new Material(MaterialType.Liana),
+                //new Material(MaterialType.PolishedAmber),
+                //new Material(MaterialType.PolishedEmerald),
+                //new Material(MaterialType.EmeraldRing),
+                //new Material(MaterialType.AmberBracelet),
+                //new Material(MaterialType.CopperBar),
+                //new Material(MaterialType.IronBar),
+                //new Material(MaterialType.Glass),
+                //new Material(MaterialType.Aluminium),
+                //new Material(MaterialType.SilverBar),
+                //new Material(MaterialType.GoldBar)
             };
+            foreach (var material in items) Console.WriteLine(material.Print());
+
+            items.Clear();
+            foreach (MaterialType type in Enum.GetValues(typeof(MaterialType)))
+                items.Add(new Material(type));
+
 
             foreach (var material in items) Console.WriteLine(material.Print());
             Console.ReadKey();

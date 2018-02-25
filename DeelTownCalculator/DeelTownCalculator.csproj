@@ -43,20 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Booster.cs" />
-    <Compile Include="Capacity.cs" />
-    <Compile Include="Crafter\CrafterGreenHouse.cs" />
-    <Compile Include="CrafterIdentifier.cs" />
-    <Compile Include="Crafter\CrafterMaster.cs" />
-    <Compile Include="Crafter\CrafterRaw.cs" />
-    <Compile Include="Processor.cs" />
-    <Compile Include="Defines.cs" />
-    <Compile Include="Market.cs" />
+    <Compile Include="Model\Booster.cs" />
+    <Compile Include="Model\Capacity.cs" />
+    <Compile Include="Converter.cs" />
+    <Compile Include="Defines\CraftingOutput.cs" />
+    <Compile Include="Defines\Progress.cs" />
+    <Compile Include="Defines\Enums.cs" />
+    <Compile Include="Defines\SellingPrice.cs" />
     <Compile Include="Material.cs" />
-    <Compile Include="Crafter\CrafterJewel.cs" />
+    <Compile Include="Model\CraftingTime.cs" />
+    <Compile Include="Model\Mines.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Crafter\CrafterSmelting.cs" />
+    <Compile Include="SimpleDebugger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

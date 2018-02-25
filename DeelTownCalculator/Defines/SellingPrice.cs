@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using DeelTownCalculator;
 
-namespace DeelTownCalculator
+namespace DeelTownCalculator.Defines
 {
-
-    public class Market
+    public class SellingPrice
     {
-        public static readonly Dictionary<MaterialType, int> SellingPrices = new Dictionary<MaterialType, int>
+        public static readonly Dictionary<MaterialType, int> From = new Dictionary<MaterialType, int>
         {
             {MaterialType.Coal, 1},
             {MaterialType.Copper, 2},
@@ -31,7 +29,7 @@ namespace DeelTownCalculator
             {MaterialType.CopperBar, 25},
             {MaterialType.IronBar, 40},
             {MaterialType.AluminiumBar, 50},
-            {MaterialType.SteelBar, 180},
+            {MaterialType.SteelBar, 180},{MaterialType.SteelPlate, 1800},
             {MaterialType.SilverBar, 200},
             {MaterialType.GoldBar, 250},
             {MaterialType.LabFlask, 800},
@@ -48,8 +46,8 @@ namespace DeelTownCalculator
             {MaterialType.Wire, 15},
 
             {MaterialType.InsulatedWire, 750},
-            {MaterialType.AmaberCharger, 4},
-            {MaterialType.ElecticalEngine, 74500},
+            {MaterialType.AmberCharger, 4},
+            {MaterialType.ElecticalEngine, 745000},
             {MaterialType.AluminumBottle, 55},
             {MaterialType.Bomb, 55500},
             {MaterialType.Gear, 18500},
@@ -63,7 +61,7 @@ namespace DeelTownCalculator
             {MaterialType.PolishedAmber, 70},
             {MaterialType.PolishedEmerald, 160},
             {MaterialType.PolishedTopaz, 200},
-            {MaterialType.PolishedSappire, 230},
+            {MaterialType.PolishedSapphire, 230},
             {MaterialType.PolishedRuby, 250},
             {MaterialType.PolishedAmethyst, 250},
             {MaterialType.PolishedAlexandrite, 270},
@@ -77,7 +75,7 @@ namespace DeelTownCalculator
             {MaterialType.ObsidianKnife, 32000}, // update price
 
             {MaterialType.Water, 5},
-            {MaterialType.Oil, 21},
+            {MaterialType.Oil, 21},    {MaterialType.RefinedOil, 16500},
             {MaterialType.Sulfur, 100},
             {MaterialType.Silicon, 100},
             {MaterialType.Sodium, 100},
@@ -93,20 +91,20 @@ namespace DeelTownCalculator
             {MaterialType.Rubber, 4000},
             {MaterialType.Ethanol, 4200},
             {MaterialType.LiquidNitrogen, 12500},
-            {MaterialType.MagnetiteOre, 12500},
+            {MaterialType.MagnetiteOre, 12500},     {MaterialType.MagnetBar, 137000}, {MaterialType.Magnet, 300000},
             {MaterialType.DiethylEther, 17000},
 
             {MaterialType.UraniumRod, 17000},
             {MaterialType.PlasticPlate, 40000},
             {MaterialType.TonixBomb, 77500},
-            {MaterialType.EnhancedHelium3, 19000},
+            {MaterialType.EnhancedHelium3, 190000},
 
-            {MaterialType.TreeSeed, 10},
-            {MaterialType.Tree, 193},
+            {MaterialType.TreeSeed, 20},
             {MaterialType.LianaSeed, 1000},
             {MaterialType.GrapeSeed, 1200},
+            {MaterialType.Liana, 1700},
+            { MaterialType.Tree, 193},
             {MaterialType.Grape, 1500},
-            {MaterialType.Liana, 1700}
         };
     }
 }
